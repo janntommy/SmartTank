@@ -14,7 +14,7 @@ def download_nbp_eur(days: int = 90):
         data = response.json()
 
         script_dir = Path(__file__).parent.resolve()
-        dir = script_dir.parent / 'raw'
+        dir = script_dir.parent.parent / "data" / "raw" / "nbp_eur"
         dir.mkdir(parents=True, exist_ok=True)
 
         file_path = dir / f"nbp_eur_raw_{end_date.replace("-", "_")}.json"
@@ -22,7 +22,9 @@ def download_nbp_eur(days: int = 90):
         with open(file_path, 'w') as file:
             json.dump(response.json(), file, indent=4)
 
+        print("Successfully downloaded nbp_eur file")
         return file_path
+
     else:
         return None
 
