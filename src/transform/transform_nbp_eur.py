@@ -26,7 +26,7 @@ def transform_nbp_eur():
     df["date"] = pd.to_datetime(df["date"])
 
 
-    output_dir = transformed_dir / "nbp_eur_2026_t"
+    output_dir = transformed_dir / "nbp_eur_2026_t.csv"
     df.to_csv(output_dir, index=False)
 
     # print(df.head(10))
