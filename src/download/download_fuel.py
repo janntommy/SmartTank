@@ -2,6 +2,7 @@ import requests
 from pathlib import Path
 from datetime import datetime
 
+
 def download_fuel():
     url = "https://ec.europa.eu/energy/observatory/reports/History_Prices_with_taxes.xlsx"
     response = requests.get(url)
@@ -11,16 +12,20 @@ def download_fuel():
         dir.mkdir(parents=True, exist_ok=True)
 
         today = datetime.now().strftime('%Y-%m-%d')
-        file_name = f"fuel_raw_{today.replace("-","_")}.xlsx"
+        file_name = f"fuel_raw_{today.replace("-", "_")}.xlsx"
         file_path = dir / file_name
 
-        with open(file_path, 'wb') as file:
-            file.write(response.content)
+        if file_path.exists():
+            print("Fuel file already exists")
+        else:
+            with open(file_path, 'wb') as file:
+                file.write(response.content)
 
-        print("Successfully downloaded fuel file")
+            print("Successfully downloaded fuel file")
         return str(file_path)
     else:
         return None
+
 
 if __name__ == "__main__":
     download_fuel()

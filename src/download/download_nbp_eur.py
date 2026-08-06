@@ -19,10 +19,13 @@ def download_nbp_eur(days: int = 90):
 
         file_path = dir / f"nbp_eur_raw_{end_date.replace("-", "_")}.json"
 
-        with open(file_path, 'w') as file:
-            json.dump(response.json(), file, indent=4)
+        if file_path.exists():
+            print("Nbp_eur file already exists")
+        else:
+            with open(file_path, 'w') as file:
+                json.dump(response.json(), file, indent=4)
 
-        print("Successfully downloaded nbp_eur file")
+            print("Successfully downloaded nbp_eur file")
         return file_path
 
     else:
