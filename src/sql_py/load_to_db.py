@@ -35,7 +35,7 @@ def load_to_db():
             print("NBP_EUR_DATA file not found.")
         else:
             with open(nbp_eur_data, "r") as file:
-                cur.copy_expert("COPY nbp_transformed FROM STDIN WITH CSV HEADER", file)
+                cur.copy_expert("COPY nbp_eur FROM STDIN WITH CSV HEADER", file)
             print("Successfully inserted nbp_eur_2026_t.csv into database")
 
 
@@ -43,7 +43,7 @@ def load_to_db():
             print("FUEL DATA file not found.")
         else:
             with open(fuel_data, "r") as file:
-                cur.copy_expert("COPY fuel_transformed FROM STDIN WITH CSV HEADER", file)
+                cur.copy_expert("COPY fuel FROM STDIN WITH CSV HEADER", file)
             print("Successfully eu_oil_bulletin_t.csv into database")
 
 

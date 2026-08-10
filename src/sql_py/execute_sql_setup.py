@@ -68,7 +68,8 @@ def execute_sql_setup():
         cur_target.execute(sql_create_tables)
         conn_target.commit()
 
-        print("Successfully created tables: nbp_transformed and fuel_transformed.")
+        print("Successfully created table: nbp_eur.")
+        print("Successfully created table: fuel.")
 
     except Exception as e:
         print(f"ERROR DURING CREATING TABLES: {e}")
