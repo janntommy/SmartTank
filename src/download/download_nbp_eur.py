@@ -7,7 +7,7 @@ import calendar
 
 def download_nbp_eur(year: int = 2026):
     project_root = Path(__file__).resolve().parents[2]
-    dir = project_root / "data" / "raw" / "nbp_eur_t"
+    dir = project_root / "data" / "raw" / "nbp_eur"
     dir.mkdir(parents=True, exist_ok=True)
 
     current_month = datetime.now().month
@@ -31,8 +31,8 @@ def download_nbp_eur(year: int = 2026):
             with open(file_path, 'w', encoding='utf-8') as file:
                 json.dump(response.json(), file, indent=4)
 
-            print(f"Succesfully downloaded 2026-{month:02d}-{last_day:02d} nbp_eur_t file")
+            print(f"Succesfully downloaded 2026-{month:02d}-{last_day:02d} nbp_eur file")
         else:
-            print("Error, cannot download nbp_eur_t file")
+            print("Error, cannot download nbp_eur file")
 if __name__ == "__main__":
     download_nbp_eur()
