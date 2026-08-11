@@ -1,10 +1,10 @@
-CREATE TABLE IF NOT EXISTS nbp_transformed (
+CREATE TABLE IF NOT EXISTS nbp_eur (
     date DATE PRIMARY KEY,
     eur_to_pln_rate NUMERIC(10, 4)
 );
 
 
-CREATE TABLE IF NOT EXISTS fuel_transformed (
+CREATE TABLE IF NOT EXISTS fuel (
     date DATE,
     country VARCHAR(3),
     fuel_type VARCHAR(50),
