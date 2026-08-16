@@ -15,7 +15,7 @@ def convert_eur_to_pln():
     DB_NAME = os.getenv("DB_NAME")
 
     root = Path(__file__).resolve().parents[2]
-    sql_view_file = root / "sql" / "views" / "convert_to_pln.sql"
+    sql_view_file = root / "sql" / "views" / "convert_fuel_price_to_pln.sql"
 
     try:
         with open(sql_view_file, "r") as file:
