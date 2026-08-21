@@ -16,7 +16,7 @@ def load_to_db():
 
     root = Path(__file__).resolve().parents[2]
     fuel_data = root / "data" / "transformed" / "fuel_t" / "eu_oil_bulletin_t.csv"
-    nbp_eur_data = root / "data" / "transformed" / "nbp_eur_t" / "nbp_eur_2026_t.csv"
+    nbp_eur_data = root / "data" / "transformed" / "nbp_eur_t" / "nbp_eur_t.csv"
 
     connection = None
     cur = None
@@ -36,7 +36,7 @@ def load_to_db():
         else:
             with open(nbp_eur_data, "r") as file:
                 cur.copy_expert("COPY nbp_eur FROM STDIN WITH CSV HEADER", file)
-            print("Successfully inserted nbp_eur_2026_t.csv into database")
+            print("Successfully inserted nbp_eur_t.csv into database")
 
 
         if not fuel_data.exists():
