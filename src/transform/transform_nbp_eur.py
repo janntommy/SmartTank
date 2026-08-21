@@ -12,7 +12,7 @@ def transform_nbp_eur():
 
     all_files = []
 
-    for file_path in sorted(raw_dir.glob("nbp_eur_2026_*.json")):
+    for file_path in sorted(raw_dir.glob("nbp_eur_*.json")):
         with open(file_path, 'r') as file:
             data = json.load(file)
             all_files.extend(data['rates'])
@@ -26,7 +26,7 @@ def transform_nbp_eur():
     df["date"] = pd.to_datetime(df["date"])
 
 
-    output_dir = transformed_dir / "nbp_eur_2026_t.csv"
+    output_dir = transformed_dir / "nbp_eur_t.csv"
     df.to_csv(output_dir, index=False)
 
     # print(df.head(10))

@@ -5,18 +5,23 @@ from datetime import datetime
 import calendar
 
 
-def download_nbp_eur(year: int = 2026):
+def download_nbp_eur(year: int = 2020):
     project_root = Path(__file__).resolve().parents[2]
     dir = project_root / "data" / "raw" / "nbp_eur"
     dir.mkdir(parents=True, exist_ok=True)
 
-    current_month = datetime.now().month
+    current_date = datetime.now()
 
-    for month in range(1, current_month + 1):
+    if year == current_date.year:
+        max_month = current_date.month
+    else:
+        max_month = 12
+
+    for month in range(1, max_month + 1):
         last_day = calendar.monthrange(year, month)[1]
 
-        if month == current_month:
-            last_day = datetime.now().day
+        if year == current_date.year and month == current_date.month:
+            last_day = current_date.day
 
         start_date = f"{year}-{month:02d}-01"
         end_date = f"{year}-{month:02d}-{last_day:02d}"
@@ -31,8 +36,15 @@ def download_nbp_eur(year: int = 2026):
             with open(file_path, 'w', encoding='utf-8') as file:
                 json.dump(response.json(), file, indent=4)
 
-            print(f"Succesfully downloaded 2026-{month:02d}-{last_day:02d} nbp_eur file")
+            print(f"Succesfully downloaded {year}-{month:02d}-{last_day:02d} nbp_eur file")
         else:
-            print("Error, cannot download nbp_eur file")
+            print(f"Error, cannot download nbp_eur file for {start_date} to {end_date}")
+
+
 if __name__ == "__main__":
-    download_nbp_eur()
+    download_nbp_eur(2021)
+    download_nbp_eur(2022)
+    download_nbp_eur(2023)
+    download_nbp_eur(2024)
+    download_nbp_eur(2025)
+    download_nbp_eur(2026)
