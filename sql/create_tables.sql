@@ -8,5 +8,6 @@ CREATE TABLE IF NOT EXISTS fuel (
     date DATE,
     country VARCHAR(3),
     fuel_type VARCHAR(50),
-    price_eur_per_litre NUMERIC(10,4)
+    price_eur_per_litre NUMERIC(10,4),
+    PRIMARY KEY (date, country, fuel_type)
 );
